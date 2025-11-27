@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactModel;
 use Illuminate\Http\Request;
+use Symfony\Component\Mailer\Transport\NativeTransportFactory;
 
 class ContactController extends Controller
 {
@@ -16,7 +17,7 @@ class ContactController extends Controller
     {
         $contacts = ContactModel::all();
 
-        return view('allContacts', compact('contacts'));
+        return view('admin.allContacts', compact('contacts'));
     }
 
     public function sendContact(Request $request)
@@ -34,5 +35,19 @@ class ContactController extends Controller
         ]);
 
         return redirect('/shop');
+    }
+
+    public function deleteContact($contact)
+    {
+        $contact = ContactModel::where(["id" => $contact])->first();
+
+        if($contact === null)
+        {
+            die("Contact ne postoji!");
+        }
+
+        $contact->delete();
+
+        return redirect()->back();
     }
 }

@@ -1,7 +1,7 @@
 @extends("layout")
 
 @section("title")
-    Prodavnica
+    All Contacts
 @endsection
 
 @section("content")
@@ -14,24 +14,22 @@
             <thead class="table-dark">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Price</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
                 <th>Actions</th>
             </tr>
             </thead>
 
             <tbody>
-            @foreach($products as $product)
+            @foreach($contacts as $contact)
                 <tr>
-                    <td>{{$product->id}}</td>
-                    <td>{{$product->name}}</td>
-                    <td>{{$product->description}}</td>
-                    <td>{{$product->amount}}</td>
-                    <td>{{$product->price}}</td>
+                    <td>{{$contact->id}}</td>
+                    <td>{{$contact->email}}</td>
+                    <td>{{$contact->subject}}</td>
+                    <td>{{$contact->message}}</td>
                     <td>
-                        <a href="/admin/delete-product/{{$product->id}}" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="/admin/delete-contact/{{$contact->id}}" class="btn btn-sm btn-danger">Delete</a>
                         <a href="#" class="btn btn-sm btn-primary">Edit</a>
                     </td>
                 </tr>
@@ -41,5 +39,6 @@
         </table>
 
     </div>
+
 
 @endsection

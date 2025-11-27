@@ -34,4 +34,18 @@ class ProductController extends Controller
 
         return redirect('/admin/all-products');
     }
+
+    public function deleteProduct($product)
+    {
+        $singleProduct = ProductModel::where(['id' => $product])->first();
+
+        if($singleProduct === null)
+        {
+            die("Ovaj proizvod ne postoji.");
+        }
+
+        $singleProduct->delete();
+
+        return redirect()->back();
+    }
 }
