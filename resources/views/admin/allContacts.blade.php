@@ -29,7 +29,7 @@
                     <td>{{$contact->subject}}</td>
                     <td>{{$contact->message}}</td>
                     <td>
-                        <a href="/admin/delete-contact/{{$contact->id}}" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="{{route("contact.delete", ["contact" => $contact->id])}}" class="btn btn-sm btn-danger">Delete</a>
                         <a href="#" class="btn btn-sm btn-primary">Edit</a>
                     </td>
                 </tr>

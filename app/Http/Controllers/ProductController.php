@@ -17,10 +17,10 @@ class ProductController extends Controller
     public function saveProduct(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:products',
             'description' => 'required|string|min:10',
-            'amount' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0',
+            'amount' => 'required|integer|min:0',
+            'price' => 'required|decimal|min:0',
             'image' => 'required|string',
         ]);
 
@@ -32,7 +32,7 @@ class ProductController extends Controller
             'image' => $request->get('image'),
         ]);
 
-        return redirect('/admin/all-products');
+        return redirect()->route('product.all');
     }
 
     public function deleteProduct($product)
@@ -47,5 +47,46 @@ class ProductController extends Controller
         $singleProduct->delete();
 
         return redirect()->back();
+    }
+
+    public function editProduct($product)
+    {
+        $product = ProductModel::where(['id' => $product])->first();
+
+        if($product === null)
+        {
+            die("Ovaj proizvod ne postoji.");
+        }
+
+        return view('admin.editProduct', compact('product'));
+    }
+
+    public function updateProduct(Request $request, $product)
+    {
+        $product = ProductModel::where(['id' => $product])->first();
+
+        if($product === null)
+        {
+            die("Ovaj proizvod ne postoji.");
+        }
+
+        $request->validate([
+            'name' => 'required|string|unique:products',
+            'description' => 'required|string|min:10',
+            'amount' => 'required|integer|min:0',
+            'price' => 'required|decimal|min:0',
+            'image' => 'required|string',
+        ]);
+
+        $product->update([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'amount' => $request->get('amount'),
+            'price' => $request->get('price'),
+            'image' => $request->get('image'),
+
+        ]);
+
+        return redirect()->route('product.all');
     }
 }
