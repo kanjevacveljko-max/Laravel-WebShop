@@ -19,3 +19,5 @@ Route::view('/about', 'about');
 
 
 Route::get("/admin/all-products", [ProductController::class, "getAllProducts"]);
+Route::post("/admin/save-product", [ProductController::class, "saveProduct"]);
+Route::view("/admin/add-product", "admin.addProduct");
