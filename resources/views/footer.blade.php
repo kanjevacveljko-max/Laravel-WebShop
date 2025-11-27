@@ -1,3 +1,3 @@
-<footer class="bd-dark text-white d-flex justify-content-center align-items-center">
-    <p class="m-0">Copyright &copy;2023</p>
+<footer class="bg-dark text-white py-3 text-center mt-5">
+    <small>&copy; {{ date('Y') }} YourShop • All rights reserved</small>
 </footer>
