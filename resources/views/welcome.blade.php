@@ -13,6 +13,12 @@
     @endif
 
     <p>Trenutno vreme je: {{ $trenutnoVreme }}</p>
+
+
+    @foreach($lastSixProducts as $product)
+        <p>{{$product->name}}</p>
+    @endforeach
+
 @endsection
 
 
