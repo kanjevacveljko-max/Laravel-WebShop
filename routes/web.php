@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,5 @@ Route::post("send-contact", [ContactController::class, "sendContact"]);
 
 Route::view('/about', 'about');
 
+
+Route::get("/admin/all-products", [ProductController::class, "getAllProducts"]);
