@@ -37,7 +37,6 @@
                 <input type="text" name="price" class="form-control" placeholder="Enter price" required>
             </div>
 
-
             <div class="mb-3">
                 <label class="form-label">Image (file name)</label>
                 <input type="text" name="image" class="form-control" placeholder="image.jpg" required>
