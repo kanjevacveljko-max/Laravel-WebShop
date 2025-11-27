@@ -37,41 +37,20 @@ class ContactController extends Controller
         return redirect('/shop');
     }
 
-    public function deleteContact($contact)
+    public function deleteContact(ContactModel $contact)
     {
-        $contact = ContactModel::where(["id" => $contact])->first();
-
-        if($contact === null)
-        {
-            die("Contact ne postoji!");
-        }
-
         $contact->delete();
 
         return redirect()->route("contact.all");
     }
 
-    public function editContact($contact)
+    public function editContact(ContactModel $contact)
     {
-        $contact = ContactModel::where(['id' => $contact])->first();
-
-        if($contact === null)
-        {
-            die("Contact ne postoji!");
-        }
-
         return view('admin.editContact', compact('contact'));
     }
 
-    public function updateContact(Request $request, $contact)
+    public function updateContact(Request $request, ContactModel $contact)
     {
-        $contact = ContactModel::where(['id' => $contact])->first();
-
-        if($contact === null)
-        {
-            die("Contact ne postoji!");
-        }
-
         $request->validate([
             "email" => "required|email",
             "subject" => "required|string",

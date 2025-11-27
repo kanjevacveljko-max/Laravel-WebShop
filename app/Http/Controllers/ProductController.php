@@ -20,7 +20,7 @@ class ProductController extends Controller
             'name' => 'required|string|unique:products',
             'description' => 'required|string|min:10',
             'amount' => 'required|integer|min:0',
-            'price' => 'required|decimal|min:0',
+            'price' => 'required|numeric|min:0',
             'image' => 'required|string',
         ]);
 
@@ -35,46 +35,25 @@ class ProductController extends Controller
         return redirect()->route('product.all');
     }
 
-    public function deleteProduct($product)
+    public function deleteProduct(ProductModel $product)
     {
-        $singleProduct = ProductModel::where(['id' => $product])->first();
-
-        if($singleProduct === null)
-        {
-            die("Ovaj proizvod ne postoji.");
-        }
-
-        $singleProduct->delete();
+        $product->delete();
 
         return redirect()->back();
     }
 
-    public function editProduct($product)
+    public function editProduct(ProductModel $product)
     {
-        $product = ProductModel::where(['id' => $product])->first();
-
-        if($product === null)
-        {
-            die("Ovaj proizvod ne postoji.");
-        }
-
         return view('admin.editProduct', compact('product'));
     }
 
-    public function updateProduct(Request $request, $product)
+    public function updateProduct(Request $request, ProductModel $product)
     {
-        $product = ProductModel::where(['id' => $product])->first();
-
-        if($product === null)
-        {
-            die("Ovaj proizvod ne postoji.");
-        }
-
         $request->validate([
-            'name' => 'required|string|unique:products',
+            'name' => 'required|string',
             'description' => 'required|string|min:10',
             'amount' => 'required|integer|min:0',
-            'price' => 'required|decimal|min:0',
+            'price' => 'required|numeric|min:0',
             'image' => 'required|string',
         ]);
 
