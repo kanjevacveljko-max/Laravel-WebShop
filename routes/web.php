@@ -34,5 +34,7 @@ Route::get("/admin/all-contacts", [ContactController::class, "getAllContacts"])
     ->name("contact.all");
 Route::get("/admin/delete-contact/{contact}", [ContactController::class, "deleteContact"])
     ->name("contact.delete");
-Route::get("/admin/edit-contact/{contact}", [ContactController::class, "updateContact"])
+Route::get("/admin/edit-contact/{contact}", [ContactController::class, "editContact"])
+    ->name("contact.edit");
+Route::post("/admin/update-contact/{contact}", [ContactController::class, "updateContact"])
     ->name("contact.update");
