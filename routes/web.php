@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get("/", [HomepageController::class, "index"]);
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get("/shop", [ShopController::class, "index"]);
 
@@ -38,3 +39,5 @@ Route::get("/admin/edit-contact/{contact}", [ContactController::class, "editCont
     ->name("contact.edit");
 Route::post("/admin/update-contact/{contact}", [ContactController::class, "updateContact"])
     ->name("contact.update");
+
+require __DIR__.'/auth.php';
