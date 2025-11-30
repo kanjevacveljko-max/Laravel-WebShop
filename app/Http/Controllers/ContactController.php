@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactModel;
 use Illuminate\Http\Request;
-use Symfony\Component\Mailer\Transport\NativeTransportFactory;
 
 class ContactController extends Controller
 {
