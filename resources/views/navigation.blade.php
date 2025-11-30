@@ -28,7 +28,9 @@
                         <li><a class="dropdown-item" href="/admin/add-product">Add Product</a></li>
                         <li><a class="dropdown-item" href="/admin/all-products">All Products</a></li>
                         <li><a class="dropdown-item" href="/admin/all-contacts">All Contacts</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>

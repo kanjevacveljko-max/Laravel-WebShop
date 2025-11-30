@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-}) ->name('home');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -53,8 +53,8 @@ Route::middleware(['auth', AdminCheck::class])->prefix("admin")->group(function 
     Route::post("/update-contact/{contact}", [ContactController::class, "updateContact"])
         ->name("contact.update");
     Route::post("/send-contact", [ContactController::class, "sendContact"])
-         ->name("contact.send");
+        ->name("contact.send");
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

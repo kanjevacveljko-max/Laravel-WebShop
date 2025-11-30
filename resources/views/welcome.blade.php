@@ -6,7 +6,7 @@
 
 @section("content")
 
-<p>Ovo je glavna strana</p>
+    <p>Ovo je glavna strana</p>
 
 @endsection
 

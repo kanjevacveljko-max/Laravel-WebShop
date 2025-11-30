@@ -23,7 +23,8 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label">Product Name</label>
-                <input type="text" class="form-control" name="name" value="{{old("name")}}" placeholder="Enter product name" required>
+                <input type="text" class="form-control" name="name" value="{{old("name")}}"
+                       placeholder="Enter product name" required>
             </div>
 
             <div class="mb-3">
@@ -35,17 +36,20 @@
 
             <div class="mb-3">
                 <label class="form-label">Amount</label>
-                <input type="number" class="form-control" name="amount" value="{{old("amount")}}" placeholder="Enter amount" required>
+                <input type="number" class="form-control" name="amount" value="{{old("amount")}}"
+                       placeholder="Enter amount" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Price</label>
-                <input type="text" class="form-control" name="price" value="{{old("price")}}" placeholder="Enter price" required>
+                <input type="text" class="form-control" name="price" value="{{old("price")}}" placeholder="Enter price"
+                       required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Image (file name)</label>
-                <input type="text" name="image" class="form-control" value="{{old("image")}}" placeholder="image.jpg" required>
+                <input type="text" name="image" class="form-control" value="{{old("image")}}" placeholder="image.jpg"
+                       required>
             </div>
 
             <button type="submit" class="btn btn-primary">Edit Product</button>
