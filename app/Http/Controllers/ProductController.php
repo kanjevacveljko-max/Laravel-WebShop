@@ -2,43 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveProductRequest;
 use App\Models\ProductModel;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    private $productRepo;
+
+    public function __construct()
+    {
+        $this->productRepo = new ProductRepository();
+    }
+
     public function getAllProducts()
     {
         $products = ProductModel::all();
-
         return view('admin.allProducts', compact('products'));
     }
 
-    public function saveProduct(Request $request)
+    public function saveProduct(SaveProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|unique:products',
-            'description' => 'required|string|min:10',
-            'amount' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
-            'image' => 'required|string',
-        ]);
-
-        ProductModel::create([
-            'name' => $request->get('name'),
-            'description' => $request->get('description'),
-            'amount' => $request->get('amount'),
-            'price' => $request->get('price'),
-            'image' => $request->get('image'),
-        ]);
-
+        $this->productRepo->createNew($request);
         return redirect()->route('product.all');
     }
 
     public function deleteProduct(ProductModel $product)
     {
         $product->delete();
-
         return redirect()->back();
     }
 
@@ -47,25 +39,9 @@ class ProductController extends Controller
         return view('admin.editProduct', compact('product'));
     }
 
-    public function updateProduct(Request $request, ProductModel $product)
+    public function updateProduct(SaveProductRequest $request, ProductModel $product)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string|min:10',
-            'amount' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
-            'image' => 'required|string',
-        ]);
-
-        $product->update([
-            'name' => $request->get('name'),
-            'description' => $request->get('description'),
-            'amount' => $request->get('amount'),
-            'price' => $request->get('price'),
-            'image' => $request->get('image'),
-
-        ]);
-
+        $this->productRepo->updateProduct($request, $product);
         return redirect()->route('product.all');
     }
 }
