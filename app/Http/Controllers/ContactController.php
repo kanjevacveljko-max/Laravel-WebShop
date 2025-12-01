@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-
     private $contactRepo;
 
     public function __construct()

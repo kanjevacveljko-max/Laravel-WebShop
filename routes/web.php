@@ -23,9 +23,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get("/shop", [ShopController::class, "index"]);
 
-Route::get("/contact", [ContactController::class, "index"]);
-Route::post("/admin/send-contact", [ContactController::class, "sendContact"]);
-
 Route::view('/about', 'about');
 
 
@@ -33,27 +30,26 @@ Route::middleware(['auth', AdminCheck::class])->prefix("admin")->group(function 
 
     Route::view("/add-product", "admin.addProduct")
         ->name("product.add");
-    Route::get("/all-products", [ProductController::class, "getAllProducts"])
-        ->name("product.all");
-    Route::get("/delete-product/{product}", [ProductController::class, "deleteProduct"])
-        ->name("product.delete");
-    Route::post("/save-product", [ProductController::class, "saveProduct"])
-        ->name("product.save");
-    Route::get("/edit-product/{product}", [ProductController::class, "editProduct"])
-        ->name("product.edit");
-    Route::post("/update-product/{product}", [ProductController::class, "updateProduct"])
-        ->name("product.update");
 
-    Route::get("/all-contacts", [ContactController::class, "getAllContacts"])
-        ->name("contact.all");
-    Route::get("/delete-contact/{contact}", [ContactController::class, "deleteContact"])
-        ->name("contact.delete");
-    Route::get("/edit-contact/{contact}", [ContactController::class, "editContact"])
-        ->name("contact.edit");
-    Route::post("/update-contact/{contact}", [ContactController::class, "updateContact"])
-        ->name("contact.update");
-    Route::post("/send-contact", [ContactController::class, "sendContact"])
-        ->name("contact.send");
+    Route::controller(ProductController::class)->prefix("/product")->name("product.")->group(function () {
+
+        Route::get("/all", "getAllProducts")->name("all");
+        Route::get("/delete/{product}", "deleteProduct")->name("delete");
+        Route::post("/save", "saveProduct")->name("save");
+        Route::get("/edit/{product}", "editProduct")->name("edit");
+        Route::post("/update/{product}", "updateProduct")->name("update");
+    });
+
+
+    Route::controller(ContactController::class)->prefix("/contact")->name("contact.")->group(function() {
+
+        Route::get("/", "index");
+        Route::get("/all", "getAllContacts")->name("all");
+        Route::get("/delete/{contact}", "deleteContact")->name("delete");
+        Route::get("/edit/{contact}", "editContact")->name("edit");
+        Route::post("/update/{contact}", "updateContact")->name("update");
+        Route::post("/send", "sendContact")->name("send");
+    });
 
 });
 
