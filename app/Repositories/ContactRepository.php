@@ -22,9 +22,9 @@ class ContactRepository
         ]);
     }
 
-    public function updateContact($request)
+    public function updateContact($request, $contact)
     {
-        $this->contactModel->update([
+        $contact->update([
             "email" => $request->email,
             "subject" => $request->subject,
             "message" => $request->message,
