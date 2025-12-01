@@ -10,7 +10,7 @@
 
         <h2 class="mb-4">Add New Product</h2>
 
-        <form method="POST" action="{{route("product.add")}}">
+        <form method="POST" action="{{route("product.save")}}">
 
             <div>
                 @if($errors->any())
@@ -52,7 +52,7 @@
                        required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Edit Product</button>
+            <button type="submit" class="btn btn-primary">Save Product</button>
 
         </form>
 
