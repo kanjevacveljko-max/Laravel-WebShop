@@ -10,11 +10,32 @@ use function Symfony\Component\String\s;
 
 class ShopingCartController extends Controller
 {
+
+    public function showCart()
+    {
+        $cartItems = Session::get('products');
+
+        $combined = [];
+        foreach($cartItems as $cartItem){
+            $product = ProductModel::firstWhere("id", $cartItem["product_id"]);
+            if($product != null){
+                $combined[] = [
+                    'name' => $product->name,
+                    'amount' => $cartItem["amount"],
+                    'price' => $product->price,
+                    'total' => $product->price * $cartItem["amount"],
+                ];
+            }
+        }
+
+        return view("cart", compact("combined"));
+    }
+
+
     public function addToCart(CartAddRequest $request)
     {
         $product = ProductModel::where(['id' => $request->id])->first();
-        if($product->amount < $request->amount)
-        {
+        if ($product->amount < $request->amount) {
             return redirect()->back();
         }
 
@@ -24,18 +45,5 @@ class ShopingCartController extends Controller
         ]);
 
         return redirect()->route("cart.show");
-    }
-
-    public function showCart()
-    {
-        $allProducts = [];
-
-        foreach (Session::get("products") as $product) {
-            array_push($allProducts, $product["product_id"]);
-        }
-
-        $products = ProductModel::whereIn('id', $allProducts)->get();
-
-        return view('cart', compact('products'));
     }
 }
