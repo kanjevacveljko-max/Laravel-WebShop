@@ -25,9 +25,9 @@
                         ADMIN
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/admin/add-product">Add Product</a></li>
-                        <li><a class="dropdown-item" href="/admin/all-products">All Products</a></li>
-                        <li><a class="dropdown-item" href="/admin/all-contacts">All Contacts</a></li>
+                        <li><a class="dropdown-item" href="{{route("product.add")}}">Add Product</a></li>
+                        <li><a class="dropdown-item" href="{{route("product.all")}}">All Products</a></li>
+                        <li><a class="dropdown-item" href="{{route("contact.all")}}">All Contacts</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

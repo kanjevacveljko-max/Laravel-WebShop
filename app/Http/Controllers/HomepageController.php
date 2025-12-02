@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductModel;
+use Illuminate\Support\Facades\Session;
 
 class HomepageController extends Controller
 {

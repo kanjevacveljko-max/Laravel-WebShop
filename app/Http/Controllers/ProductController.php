@@ -44,4 +44,9 @@ class ProductController extends Controller
         $this->productRepo->updateProduct($request, $product);
         return redirect()->route('product.all');
     }
+
+    public function permalink(ProductModel $product)
+    {
+        return view('permalink', compact('product'));
+    }
 }

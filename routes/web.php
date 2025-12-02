@@ -7,9 +7,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Middleware\AdminCheck;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [\App\Http\Controllers\HomepageController::class, "index"])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,8 +23,13 @@ Route::get("/shop", [ShopController::class, "index"]);
 
 Route::view('/about', 'about');
 
+Route::get("/products/{product}", [ProductController::class, "permalink"])->name('product.permalink');
 
-Route::middleware(['auth', AdminCheck::class])->prefix("admin")->group(function () {
+
+
+//ADMIN RUTE
+
+Route::middleware(['auth', AdminCheck::class])->prefix("/admin")->group(function () {
 
     Route::view("/add-product", "admin.addProduct")
         ->name("product.add");

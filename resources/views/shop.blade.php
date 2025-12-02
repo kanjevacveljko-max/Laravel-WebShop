@@ -18,7 +18,7 @@
                 <th>Description</th>
                 <th>Amount</th>
                 <th>Price</th>
-                <th>Image</th>
+                <th>Actions</th>
             </tr>
             </thead>
 
@@ -30,7 +30,8 @@
                     <td>{{$product->description}}</td>
                     <td>{{$product->amount}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->image}}</td>
+                    <td><a href="{{route("product.permalink", ["product" => $product->id])}}"
+                           class="btn btn-primary">Pogledaj proizvod</a></td>
                 </tr>
             @endforeach
             </tbody>
