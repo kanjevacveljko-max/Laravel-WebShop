@@ -10,7 +10,7 @@
     <form action="{{route("cart.add")}}" method="POST">
         @csrf
         <input type="hidden" name="id" value="{{$product->id}}">
-        <input type="number" name="amount" placeholder="Enter amount">
+        <input type="text" name="amount" placeholder="Enter amount">
         <button>Add to cart</button>
     </form>
 @endsection

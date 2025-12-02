@@ -5,9 +5,8 @@
 @endsection
 
 @section("content")
-
-    @foreach($products as $id => $amount)
-        <p>Proizvod: {{$id}}, Kolicina: {{$amount}}</p>
+    @foreach($products as $product)
+        <p>{{$product->name}}</p>
     @endforeach
 
 @endsection
