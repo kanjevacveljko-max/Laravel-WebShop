@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShopingCartController;
 use App\Http\Middleware\AdminCheck;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +26,8 @@ Route::view('/about', 'about');
 
 Route::get("/products/{product}", [ProductController::class, "permalink"])->name('product.permalink');
 
-
-
+Route::post("/cart/add", [ShopingCartController::class, "addToCart"])->name('cart.add');
+Route::get("/cart", [ShopingCartController::class, "showCart"])->name('cart.show');
 //ADMIN RUTE
 
 Route::middleware(['auth', AdminCheck::class])->prefix("/admin")->group(function () {
